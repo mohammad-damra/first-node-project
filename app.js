@@ -10,7 +10,21 @@ const server = http.createServer((req, res) => {
 
   // part 2
 
-  fs.readFile("index.html", (err, data) => {
+  //   fs.readFile("index.html", (err, data) => {
+  //     if (err) {
+  //       res.writeHead(500, { "content-type": "text/plain" });
+  //       console.log("sorry can't read from the server");
+  //     } else {
+  //       res.writeHead(200, { "content-type": "text/html" });
+  //       res.end(data);
+  //     }
+  //   });
+  // });
+  fs.writeFile("myText.txt", "<h1> My name is Mohammad</h1>", (err) => {
+    if (err) throw err;
+    console.log("Saved!");
+  });
+  fs.readFile("myText.txt", (err, data) => {
     if (err) {
       res.writeHead(500, { "content-type": "text/plain" });
       console.log("sorry can't read from the server");
@@ -20,12 +34,6 @@ const server = http.createServer((req, res) => {
     }
   });
 });
-fs.writeFile("myText.txt", "My name is Mohammad", (err) => {
-  if (err) throw err;
-  console.log("Saved!");
-});
-
-
 const thePort = 3000;
 
 const HOST = "127.0.0.1";
